@@ -2,11 +2,11 @@ package com.ll.exam;
 
 public class ArrayList {
     private int size;
-    private Object[] datas;
+    private Integer[] datum;
 
     public ArrayList() {
         size = 0;
-        datas = new Object[20];
+        datum = new Integer[20];
     }
 
     public int size() {
@@ -14,10 +14,18 @@ public class ArrayList {
     }
 
     public void add(int data) {
+        datum[size] = data;
         size++;
     }
 
     public int get(int index) {
-        return 100;
+        return datum[index];
+    }
+
+    public void remove(int index) {
+        for(int i=index; i<size; i++){
+            datum[i] = datum[i+1];
+        }
+        size--;
     }
 }
