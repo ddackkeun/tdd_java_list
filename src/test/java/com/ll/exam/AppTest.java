@@ -3,7 +3,10 @@ package com.ll.exam;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class AppTest {
@@ -54,7 +57,7 @@ public class AppTest {
     }
 
     @Test
-    void removeAt() {
+    void remove() {
         ArrayList al = new ArrayList();
         al.add(100);
         al.add(200);
@@ -85,5 +88,41 @@ public class AppTest {
 
         al.remove(1);
         assertEquals(300, al.get(1));
+    }
+
+    @Test
+    void 최초_배열크기_테스트() {
+        ArrayList al = new ArrayList();
+        assertEquals(2, al.getArrayLength());
+    }
+
+    @Test
+    void 배열_크기증가_테스트() {
+        ArrayList al = new ArrayList();
+        al.add(100);
+        al.add(200);
+        assertEquals(2, al.getArrayLength());
+
+        al.add(300);
+        assertEquals(4, al.getArrayLength());
+    }
+
+    @Test
+    void showAllValues() {
+        ArrayList al = new ArrayList();
+        al.add(1000);
+        al.add(200);
+        al.add(30);
+
+        ByteArrayOutputStream output = TestUtil.setOutToByteArray();
+        al.showAllValues();
+
+        String result = output.toString();
+
+        TestUtil.clearSetOutToByteArray(output);
+        assertTrue(result.contains("== 전체 데이터 출력 =="));
+        assertTrue(result.contains("0 : 1000"));
+        assertTrue(result.contains("1 : 200"));
+        assertTrue(result.contains("2 : 30"));
     }
 }
